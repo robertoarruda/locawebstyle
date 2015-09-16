@@ -1,4 +1,8 @@
 var locastyle = locastyle || {};
+
+locastyle.modules = locastyle.modules || [];
+locastyle.modules.push('btnGroup');
+
 locastyle.btnGroup = (function() {
   'use strict';
 

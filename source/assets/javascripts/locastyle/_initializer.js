@@ -22,15 +22,12 @@ var locastyle = (function() {
   }
 
   function loadModules() {
-    var modules = getModules();
-    for (var i in modules) {
-      if (modules.hasOwnProperty(i)) {
-        locastyle[modules[i]].init();
-        console.info("Locastyle: module [" + modules[i] + "] successfully initialized.");
-
-        $.event.trigger(modules[i] + ':ready');
-      }
-    }
+    $.each(locastyle.modules, function(i, module){
+      locastyle[module].init();
+      console.info("Locastyle: module [" + module + "] successfully initialized.");
+      
+      $.event.trigger(module+':ready', [i, module]);
+    });
   }
 
   function checkClassForTrack() {

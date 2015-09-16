@@ -1,5 +1,8 @@
 var locastyle = locastyle || {};
 
+locastyle.modules = locastyle.modules || [];
+locastyle.modules.push('steps');
+
 locastyle.steps = (function() {
   'use strict';
 

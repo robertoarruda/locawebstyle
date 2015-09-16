@@ -1,4 +1,8 @@
 var locastyle = locastyle || {};
+
+locastyle.modules = locastyle.modules || [];
+locastyle.modules.push('general');
+
 locastyle.general = (function() {
   'use strict';
 
