@@ -1,0 +1,24 @@
+CACHE MANIFEST
+# Version 10
+
+CACHE:
+/assets/javascripts/libs/jquery-2.1.0.min.js
+/assets/javascripts/locastyle.js
+/assets/stylesheets/locastyle.css
+/assets/stylesheets/fonts/locastyle.woff
+/assets/stylesheets/fonts/locastyle.ttf
+# /assets/stylesheets/fonts/locastyle.svg
+/assets/stylesheets/fonts/locastyle-panel-icons.ttf
+/assets/stylesheets/fonts/locastyle-panel-icons.woff
+# /assets/stylesheets/fonts/locastyle-panel-icons.svg
+
+NETWORK:
+*
+
+FALLBACK:
+/assets/stylesheets/fonts/locastyle.woff /assets/stylesheets/fonts/locastyle.woff
+/assets/stylesheets/fonts/locastyle.ttf /assets/stylesheets/fonts/locastyle.ttf
+# /assets/stylesheets/fonts/locastyle.svg /assets/stylesheets/fonts/locastyle.svg
+/assets/stylesheets/fonts/locastyle-panel-icons.ttf /assets/stylesheets/fonts/locastyle-panel-icons.ttf
+/assets/stylesheets/fonts/locastyle-panel-icons.woff /assets/stylesheets/fonts/locastyle-panel-icons.woff
+# /assets/stylesheets/fonts/locastyle-panel-icons.svg /assets/stylesheets/fonts/locastyle-panel-icons.svg
