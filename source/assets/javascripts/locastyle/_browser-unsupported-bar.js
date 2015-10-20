@@ -1,7 +1,7 @@
 var locastyle = locastyle || {};
 
 locastyle.modules = locastyle.modules || [];
-locastyle.modules.push('browserDetect');
+locastyle.modules.push('browserUnsupportedBar');
 
 locastyle.browserUnsupportedBar = (function() {
   'use strict';
