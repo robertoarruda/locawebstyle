@@ -1,8 +1,5 @@
 var locastyle = locastyle || {};
 
-locastyle.modules = locastyle.modules || [];
-locastyle.modules.push('modal');
-
 locastyle.modal = (function() {
   'use strict';
 
@@ -22,9 +19,22 @@ locastyle.modal = (function() {
     lsModal : 0
   };
 
+  function checkModule() {
+    var modules = document.querySelectorAll(config.open.trigger).length;
+    var isModules = (modules > 0) ? true : false;
+    
+    if(isModules) {
+      console.info("Locastyle: module [modal] successfully initialized.");
+    }
+
+    return isModules;
+  }
+
   function init() {
-    unbind();
-    bindOpen();
+    if(checkModule()) {
+      unbind();
+      bindOpen();
+    }
   }
 
   function unbindClose() {
@@ -134,3 +144,5 @@ locastyle.modal = (function() {
   };
 
 }());
+
+$(document).ready(locastyle.modal.init);
