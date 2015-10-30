@@ -1,29 +1,40 @@
 var locastyle = locastyle || {};
 
-locastyle.modules = locastyle.modules || [];
-locastyle.modules.push('tabs');
-
 locastyle.tabs = (function() {
   'use strict';
 
   var config = {
+    module: '[data-ls-module="tabs"]',
     tab : '.ls-tabs-nav',
     tabLink: '.ls-tabs-nav a',
     tabListActive: '.ls-tabs-nav li.ls-active a',
     tabContent: '.ls-tab-content'
   };
 
+  function checkModule() {
+    var modules = document.querySelectorAll(config.module).length;
+    var isModules = (modules > 0) ? true : false;
+    
+    if(isModules) {
+      console.info("Locastyle: module [tabs] successfully initialized.");
+    }
+
+    return isModules;
+  }
+
   function init() {
-    unbind();
-    bindClickOnTriggers();
-    bindBreakpointUpdateOnChecker();
-    checkBreakpoint();
-    ariaTabs();
+    if(checkModule()) {
+      unbind();
+      bindClickOnTriggers();
+      bindBreakpointUpdateOnChecker();
+      checkBreakpoint();
+      ariaTabs();
+    }
   }
 
   // bind click and call the necessary methods
   function bindClickOnTriggers() {
-    $('[data-ls-module="tabs"]').on('click.ls', function(evt) {
+    $(config.module).on('click.ls', function(evt) {
       evt.preventDefault();
       var $target = $($(this).attr('href') || $(this).data('target'));
       var $closestTabNav = $(this).closest('.ls-tabs-nav');
@@ -105,7 +116,7 @@ locastyle.tabs = (function() {
 
   // remove binds added by the module itself
   function unbind() {
-    $('[data-ls-module=tabs]').off('click.ls');
+    $(config.module).off('click.ls');
   }
 
   function ariaTabs() {
@@ -122,3 +133,5 @@ locastyle.tabs = (function() {
   };
 
 }());
+
+$(document).ready(locastyle.tabs.init);
