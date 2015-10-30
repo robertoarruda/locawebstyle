@@ -1,8 +1,5 @@
 var locastyle = locastyle || {};
 
-locastyle.modules = locastyle.modules || [];
-locastyle.modules.push('collapse');
-
 locastyle.collapse = (function() {
   'use strict';
 
@@ -20,12 +17,25 @@ locastyle.collapse = (function() {
     }
   };
 
+  function checkModule() {
+    var modules = document.querySelectorAll(config.trigger).length;
+    var isModules = (modules > 0) ? true : false;
+    
+    if(isModules) {
+      console.info("Locastyle: module [collapse] successfully initialized.");
+    }
+
+    return isModules;
+  }
+
   function init() {
-    // set attributes from all collapses on load
-    $(config.classes.header).each(function() {
-      ariaCollapse($(this));
-    });
-    bind();
+    if(checkModule()) {
+      // set attributes from all collapses on load
+      $(config.classes.header).each(function() {
+        ariaCollapse($(this));
+      });
+      bind();
+    }
   }
 
   function bind() {
@@ -83,3 +93,5 @@ locastyle.collapse = (function() {
   };
 
 }());
+
+$(document).ready(locastyle.collapse.init);
