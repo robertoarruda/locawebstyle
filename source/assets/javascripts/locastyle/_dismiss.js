@@ -1,8 +1,5 @@
 var locastyle = locastyle || {};
 
-locastyle.modules = locastyle.modules || [];
-locastyle.modules.push('dismiss');
-
 locastyle.dismiss = (function() {
   'use strict';
 
@@ -11,9 +8,22 @@ locastyle.dismiss = (function() {
     triggerClose: 'dismiss:close'
   };
 
+  function checkModule() {
+    var modules = document.querySelectorAll(config.trigger).length;
+    var isModules = (modules > 0) ? true : false;
+    
+    if(isModules) {
+      console.info("Locastyle: module [dismiss] successfully initialized.");
+    }
+
+    return isModules;
+  }
+
   function init() {
-    unbind();
-    bindClickOnTriggers();
+    if(checkModule()) {
+      unbind();
+      bindClickOnTriggers();
+    }
   }
 
   function unbind() {
@@ -46,3 +56,5 @@ locastyle.dismiss = (function() {
   };
 
 }());
+
+$(document).ready(locastyle.dismiss.init);
