@@ -1,20 +1,34 @@
 var locastyle = locastyle || {};
 
-locastyle.modules = locastyle.modules || [];
-locastyle.modules.push('progressBar');
-
 locastyle.progressBar = (function() {
   'use strict';
 
+  var config = {
+    module: '[data-ls-module="progressBar"]'
+  }
+
+  function checkModule() {
+    var modules = document.querySelectorAll(config.module).length;
+    var isModules = (modules > 0) ? true : false;
+    
+    if(isModules) {
+      console.info("Locastyle: module [progressBar] successfully initialized.");
+    }
+
+    return isModules;
+  }
+
   function init() {
-    structureProgressBar();
+    if(checkModule()) {
+      structureProgressBar();
+    }
   }
 
   function structureProgressBar() {
-    $("[data-ls-module='progressBar']").each(function (index, element){
+    $(config.module).each(function (index, element){
       var percentage = $(element).attr("aria-valuenow");
       $(element).append("<span aria-valuenow='"+percentage+"%'>");
-        var $bar       = $(element).find('span');
+      var $bar = $(element).find('span');
       setProgressBarValue($bar, percentage);
     });
   }
@@ -28,3 +42,5 @@ locastyle.progressBar = (function() {
   };
 
 }());
+
+$(document).ready(locastyle.progressBar.init);
