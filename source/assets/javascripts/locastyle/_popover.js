@@ -1,8 +1,5 @@
 var locastyle = locastyle || {};
 
-locastyle.modules = locastyle.modules || [];
-locastyle.modules.push('popover');
-
 locastyle.popover = (function() {
   'use strict';
 
@@ -19,10 +16,23 @@ locastyle.popover = (function() {
     }
   }
 
+  function checkModule() {
+    var modules = document.querySelectorAll(config.module).length;
+    var isModules = (modules > 0) ? true : false;
+    
+    if(isModules) {
+      console.info("Locastyle: module [popover] successfully initialized.");
+    }
+
+    return isModules;
+  }
+
   function init() {
-    clickAnywhereClose();
-    bindPopover();
-    startOpened();
+    if(checkModule()) {
+      clickAnywhereClose();
+      bindPopover();
+      startOpened();
+    }
   }
 
   // When click or hover elements, show the popovers
@@ -174,3 +184,5 @@ locastyle.popover = (function() {
   };
 
 }());
+
+$(document).ready(locastyle.popover.init);
