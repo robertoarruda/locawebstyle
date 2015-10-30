@@ -1,17 +1,32 @@
 var locastyle = locastyle || {};
 
-locastyle.modules = locastyle.modules || [];
-locastyle.modules.push('charCounter');
-
 locastyle.charCounter = (function() {
   'use strict';
 
-  function init(){
-    countText();
+  var config = {
+    module: '[data-ls-module="charCounter"]'
+  };
+
+  
+  function checkModule() {
+    var modules = document.querySelectorAll(config.module).length;
+    var isModules = (modules > 0) ? true : false;
+    
+    if(isModules) {
+      console.info("Locastyle: module [char counter] successfully initialized.");
+    }
+
+    return isModules;
+  }
+
+  function init() {
+    if(checkModule()) {
+      countText();
+    }
   }
 
   function countText(){
-    $('[data-ls-module="charCounter"]').each(function(index, field){
+    $(config.module).each(function(index, field){
       var limit = $(field).attr('maxlength');
       $(field).removeAttr('maxlength').data().maxlength = limit;
       $(field).after('<p class="ls-help-inline"><small><strong class="ls-char-count ls-number-counter-'+index+'">'+limit+'</strong> caracteres restantes</small></p>');
@@ -41,3 +56,5 @@ locastyle.charCounter = (function() {
   };
 
 }());
+
+$(document).ready(locastyle.charCounter.init);
