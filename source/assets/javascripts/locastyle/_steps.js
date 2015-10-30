@@ -1,13 +1,11 @@
 var locastyle = locastyle || {};
 
-locastyle.modules = locastyle.modules || [];
-locastyle.modules.push('steps');
-
 locastyle.steps = (function() {
   'use strict';
 
   var config = {
     selectors: {
+      module: '[data-ls-module="steps"]',
       moduleActive: '.ls-actived [data-ls-module="steps"]',
       nav: '.ls-steps-nav',
       button: '.ls-steps-btn',
@@ -29,17 +27,30 @@ locastyle.steps = (function() {
     }
   };
 
+  function checkModule() {
+    var modules =  document.querySelectorAll(config.selectors.module).length;
+    var isModules = (modules > 0) ? true : false;
+    
+    if(isModules) {
+      console.info("Locastyle: module [steps] successfully initialized.");
+    }
+
+    return isModules;
+  }
+
   function init() {
-    unbind();
-    createArrow();
-    ariaSteps();
-    addAriaLabel();
-    addActivedNav();
-    mobileInfos();
-    bindClickOnTriggers();
-    bindMobileMenuClick();
-    bindNextStep();
-    bindPrevStep();
+    if(checkModule()) {
+      unbind();
+      createArrow();
+      ariaSteps();
+      addAriaLabel();
+      addActivedNav();
+      mobileInfos();
+      bindClickOnTriggers();
+      bindMobileMenuClick();
+      bindNextStep();
+      bindPrevStep();
+    }
   }
 
   // Remove the binds that own module adds
@@ -247,3 +258,5 @@ locastyle.steps = (function() {
   };
 
 }());
+
+$(document).ready(locastyle.steps.init);
