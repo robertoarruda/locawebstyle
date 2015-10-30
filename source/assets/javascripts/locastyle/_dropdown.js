@@ -1,8 +1,5 @@
 var locastyle = locastyle || {};
 
-locastyle.modules = locastyle.modules || [];
-locastyle.modules.push('dropdown');
-
 locastyle.dropdown = (function() {
   'use strict';
 
@@ -15,11 +12,24 @@ locastyle.dropdown = (function() {
     nav: '.ls-dropdown-nav'
   };
 
+  function checkModule() {
+    var modules = document.querySelectorAll(config.module).length;
+    var isModules = (modules > 0) ? true : false;
+    
+    if(isModules) {
+      console.info("Locastyle: module [dropdown] successfully initialized.");
+    }
+
+    return isModules;
+  }
+
   function init() {
-    unbind();
-    bindClickOnTriggers();
-    bindClickOutsideTriggers();
-    ariaDropdown(config.dropdown);
+    if(checkModule()) {
+      unbind();
+      bindClickOnTriggers();
+      bindClickOutsideTriggers();
+      ariaDropdown(config.dropdown);
+    }
   }
 
   function unbind() {
@@ -98,3 +108,5 @@ locastyle.dropdown = (function() {
   };
 
 }());
+
+$(document).ready(locastyle.dropdown.init);
