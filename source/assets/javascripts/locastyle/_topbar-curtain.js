@@ -1,8 +1,5 @@
 var locastyle = locastyle || {};
 
-locastyle.modules = locastyle.modules || [];
-locastyle.modules.push('topbarCurtain');
-
 locastyle.topbarCurtain = (function() {
   'use strict';
 
@@ -10,14 +7,27 @@ locastyle.topbarCurtain = (function() {
     module: '[data-ls-module="topbarCurtain"]'
   };
 
+  function checkModule() {
+    var modules = document.querySelectorAll(config.module).length;
+    var isModules = (modules > 0) ? true : false;
+    
+    if(isModules) {
+      console.info("Locastyle: module [topbar curtain] successfully initialized.");
+    }
+
+    return isModules;
+  }
+
   function init() {
-    unbind();
-    positionTarget();
-    bindCloseCurtains();
-    bindPreventClosing();
-    repositionOnResize();
-    updateStatusCounter();
-    cloneDropdownToSidebar();
+    if(checkModule()) {
+      unbind();
+      positionTarget();
+      bindCloseCurtains();
+      bindPreventClosing();
+      repositionOnResize();
+      updateStatusCounter();
+      cloneDropdownToSidebar();
+    }
   }
 
   function unbind() {
@@ -122,3 +132,5 @@ locastyle.topbarCurtain = (function() {
   };
 
 }());
+
+$(document).ready(locastyle.topbarCurtain.init);
