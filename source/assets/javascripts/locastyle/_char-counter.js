@@ -8,7 +8,7 @@ locastyle.charCounter = (function() {
   }
 
   function countText() {
-    $('[data-ls-module="charCounter"]').each(function(index, field) {
+    $('[data-ls-module="charCounter"]:not(.ls-char-counter-started)').each(function(index, field) {
       var limit = $(field).attr('maxlength');
       var html = '<p class="ls-help-inline"><small><strong ' +
         'class="ls-char-count ls-number-counter-' + index + '">' + limit +
@@ -34,6 +34,8 @@ locastyle.charCounter = (function() {
           updateCounter(index, limit - count);
         }
       });
+      
+      $(field).addClass('ls-char-counter-started');
 
       $(field).trigger('keyup');
     });
